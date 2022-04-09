@@ -26,9 +26,18 @@ header .logo h2{
 .chercherBar{
       width: 100%;
       padding: 0 100px;
+      position: relative;
 }
 
 #chercher{
       width: 100%;
       padding: 10px;
+}
+
+.chercheBar1 i{
+      position: absolute;
+      top: 12px;
+      right: 115px;
+      color: gray;
+      cursor: pointer;
 }
