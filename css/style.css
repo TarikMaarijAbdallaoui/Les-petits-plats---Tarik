@@ -32,12 +32,14 @@ header .logo h2{
 #chercher{
       width: 100%;
       padding: 10px;
+      background: #E7E7E7;
+
 }
 
 .chercheBar1 i{
       position: absolute;
       top: 12px;
       right: 115px;
-      color: gray;
+      color: #000000;
       cursor: pointer;
 }
