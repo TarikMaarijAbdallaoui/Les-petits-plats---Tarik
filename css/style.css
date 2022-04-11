@@ -43,3 +43,48 @@ header .logo h2{
       color: #000000;
       cursor: pointer;
 }
+
+.filters {
+      display: flex;
+      justify-content: flex-start;
+      padding: 15px 100px;
+}
+
+.filters .ingredient,
+.filters .appareils,
+.filters .ustensiles {
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      margin: 5px;
+}    
+
+.ingredient {
+      background-color: #3282F7;
+}
+
+.appareils {
+      background-color: #68d9a4;
+}
+
+.ustensiles {
+      background-color: #ED6454;
+}
+
+.ingredient select {
+      background-color: #3282F7;
+      border: none;
+      color: white;
+}
+
+.appareils select {
+      background-color: #68d9a4;
+      border: none;
+      color: white;
+}
+
+.ustensiles select {
+      background-color: #ED6454;
+      border: none;
+      color: white;
+}
