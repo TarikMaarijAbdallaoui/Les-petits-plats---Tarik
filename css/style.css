@@ -32,7 +32,9 @@ header .logo h2{
 #chercher{
       width: 100%;
       padding: 10px;
-      background: #E7E7E7;
+      background-color: rgba(0, 0, 0, 0.02);
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
 
 }
 
