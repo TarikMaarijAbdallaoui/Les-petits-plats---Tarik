@@ -61,32 +61,18 @@ header .logo h2{
       margin: 5px;
 }    
 
-.ingredient {
+#ingredients-btn {
       background-color: #3282F7;
 }
 
-.appareils {
+#appareils-btn {
       background-color: #68d9a4;
 }
 
-.ustensiles {
+#ustensiles-btn {
       background-color: #ED6454;
 }
 
-.ingredient select {
-      background-color: #3282F7;
-      border: none;
-      color: white;
-}
-
-.appareils select {
-      background-color: #68d9a4;
-      border: none;
-      color: white;
-}
-
-.ustensiles select {
-      background-color: #ED6454;
-      border: none;
-      color: white;
+.ingredient-box, .appareils-box, .ustensiles-box {
+      margin-right: 1rem;
 }
