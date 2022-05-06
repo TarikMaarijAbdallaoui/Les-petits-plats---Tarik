@@ -1,4 +1,4 @@
-function getIngedients (ingredientsList) {
+function getIngredients (ingredientsList) {
         let list = "";
         ingredientsList.forEach((item) => {
                 list += `<li><strong>${item.ingredient}</strong>${
@@ -39,7 +39,7 @@ export function showPlats(platsList){
                                 <div class="plat-body">
                                      <div class="ingredients">
                                         <ul>
-                                            ${getIngedients(plat.ingredients)}
+                                            ${getIngredients(plat.ingredients)}
                                         </ul>
                                       </div>
                                       <div class="description">

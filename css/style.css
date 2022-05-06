@@ -76,3 +76,30 @@ header .logo h2{
 .ingredient-box, .appareils-box, .ustensiles-box {
       margin-right: 1rem;
 }
+
+#ingredients-list::-webkit-scrollbar {
+      background-color: #3282f7;
+    }
+
+/* Styles des filtres */    
+
+.tag-btn {
+      border-color: transparent;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 8.25rem;
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      color: #fff;
+      font-weight: 600;
+}
+
+.search-tag {
+      width: 40rem;
+      overflow: hidden;
+      display: none;
+      border: none;
+      outline: none;
+      background-color: transparent;
+}
