@@ -1,6 +1,7 @@
 import {recipes} from "../data/recipes.js";
 import { showPlats } from "./factories/plats.js";
 import {allFilters} from "./utils/filters.js";
+import { normalizeString } from "./utils/nom.js";
 
 
 /* importation elements des filtres*/
