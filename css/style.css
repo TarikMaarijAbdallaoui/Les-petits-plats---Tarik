@@ -62,15 +62,15 @@ header .logo h2{
       margin: 5px;
 }    
 
-#ingredients-btn {
+#ingredients-btn, #ingredients-list {
       background-color: #3282F7;
 }
 
-#appareils-btn {
+#appareils-btn, #appareils-list {
       background-color: #68d9a4;
 }
 
-#ustensiles-btn {
+#ustensiles-btn, #ustensils-list {
       background-color: #ED6454;
 }
 
@@ -250,10 +250,10 @@ header .logo h2{
       cursor: pointer;
     }
 
-    .open .tag-arrow {
+.open .tag-arrow {
       transform: rotateX(180deg);
     }
-    .open .tag-btn {
+.open .tag-btn {
       width: 40rem;
       border-radius: 0.25rem;
     }
