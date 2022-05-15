@@ -184,3 +184,76 @@ header .logo h2{
       font-size: 13px;
       padding: 0 10px;
 }
+
+/*Estilos de elemoentos de los filtros*/
+.tags-list {
+      position: absolute;
+      overflow: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 40rem;
+      max-height: 15.8rem;
+      margin-top: 0.1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      z-index: 1;
+      display: none;
+    }
+
+    .ingredients-option,
+    .appareils-option,
+    .ustensils-option {
+      width: 30%;
+      color: #fff;
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.7rem;
+    }
+    
+    .ingredients-option:hover,
+    .appareils-option:hover,
+    .ustensils-option:hover,
+    .ingredients-option:focus,
+    .appareils-option:focus,
+    .ustensils-option:focus {
+      color: #fff;
+      opacity: 65%;
+    }
+    .ingredients-option:hover .ingredients-option,
+    .ingredients-option:hover .appareils-option,
+    .ingredients-option:hover .ustensils-option,
+    .appareils-option:hover .ingredients-option,
+    .appareils-option:hover .appareils-option,
+    .appareils-option:hover .ustensils-option,
+    .ustensils-option:hover .ingredients-option,
+    .ustensils-option:hover .appareils-option,
+    .ustensils-option:hover .ustensils-option,
+    .ingredients-option:focus .ingredients-option,
+    .ingredients-option:focus .appareils-option,
+    .ingredients-option:focus .ustensils-option,
+    .appareils-option:focus .ingredients-option,
+    .appareils-option:focus .appareils-option,
+    .appareils-option:focus .ustensils-option,
+    .ustensils-option:focus .ingredients-option,
+    .ustensils-option:focus .appareils-option,
+    .ustensils-option:focus .ustensils-option {
+      width: 30%;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    
+.tag-arrow {
+      margin-top: 3px;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+
+    .open .tag-arrow {
+      transform: rotateX(180deg);
+    }
+    .open .tag-btn {
+      width: 40rem;
+      border-radius: 0.25rem;
+    }

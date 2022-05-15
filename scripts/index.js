@@ -4,7 +4,7 @@ import {allFilters} from "./utils/filters.js";
 
 
 /* importation elements des filtres*/
-
+/* la fonction qui affiche les éléments de chaque couleur */ 
 function loadFilters(recipes) {
         const { allIngredients, allAppareils, allUstensils } = allFilters(recipes);
         const ingredientsBlock = document.querySelector("#ingredients-list");

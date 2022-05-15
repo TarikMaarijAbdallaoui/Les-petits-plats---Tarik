@@ -1,3 +1,5 @@
+/* c´est la fonction qui classifie les éléments du json original selon leur type*/
+
 export const allFilters = (recipes) => {
         let allIngredients = [];
         let allAppareils = [];
