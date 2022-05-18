@@ -279,3 +279,34 @@ header .logo h2{
       width: 40rem;
       border-radius: 0.25rem;
     }
+
+    /* style des éléments sélectionnés avec le clic */
+    
+    #selected-filter {
+      padding: 10px 100px;
+    }
+    #selected-filter .ing, #selected-filter .app, #selected-filter .ute {
+      display: inline-block;
+      font-size: 0.7rem;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 0.25rem;
+      margin: 3px;
+    }
+    #selected-filter .ing .fa-circle-xmark, #selected-filter .app .fa-circle-xmark, #selected-filter .ute .fa-circle-xmark {
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    #selected-filter .ing .fa-circle-xmark:hover, #selected-filter .app .fa-circle-xmark:hover, #selected-filter .ute .fa-circle-xmark:hover {
+      color: #977571;
+    }
+    #selected-filter .ing {
+      background-color: #3282F7;
+    }
+    #selected-filter .app {
+      background-color: #68d9a4;
+    }
+    #selected-filter .ute {
+      background-color: #ed6454;
+    }
+    

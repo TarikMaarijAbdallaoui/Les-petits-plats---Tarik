@@ -98,7 +98,7 @@ const ustensilsFilter = [];
 /*2-1 : la fonction qui permet de sélectionner un élément au clic ou en le tapant */
 
 function selectionFilter() {
-  // desestructuracion de las listas de ingredients, appliance y ustensils
+  // desestructuracion de las listas de ingredients, appareils y ustensils
   const { allIngredients, allAppareils, allUstensils } = allFilters(recipes);
 
   // seleccion de elementos del dom para su modificacion
@@ -118,7 +118,7 @@ function selectionFilter() {
   searchUstensils.addEventListener("keyup", typeMatchUstensils);
   searchAppareils.addEventListener("keyup", typeMatchAppapareil);
 
-  // événements lors d'un clic sur un élément ingredient, appliance o ustensils
+  // événements lors d'un clic sur un élément ingredient, appareils o ustensils
   ingredientsBlock.addEventListener("click", ingredientSelection);
   appareilsBlock.addEventListener("click", appareilSelection);
   ustensilsBlock.addEventListener("click", ustensilSelection);
@@ -155,12 +155,12 @@ function selectionFilter() {
   
     ustensilsBlock.innerHTML = "";
     matchedUstensils.forEach((ustensil) => {
-      ustensilsBlock.innerHTML += `<li role="option" class="appliances-option">${ustensil}</li>`;
+      ustensilsBlock.innerHTML += `<li role="option" class="appareils-option">${ustensil}</li>`;
     });
   }
 
   /**
-   * Esta función recarga la lista de appliances con aquellos que coinciden
+   * Esta función recarga la lista de appareils con aquellos que coinciden
    * con lo escrito en el input
    * @param {evento click} e
    */
@@ -168,12 +168,12 @@ function selectionFilter() {
     e.preventDefault();
     const inputValue = normalizeString(e.target.value);
 
-    const matchedAppliance = allAppareils.filter((ingredient) => {
+    const matchedAppareils = allAppareils.filter((ingredient) => {
       return normalizeString(ingredient).includes(inputValue);
     });
     appareilsBlock.innerHTML = "";
-    matchedAppliance.forEach((appliance) => {
-      appareilsBlock.innerHTML += `<li role="option" class="appliances-option">${appliance}</li>`;
+    matchedAppareils.forEach((appareil) => {
+      appareilsBlock.innerHTML += `<li role="option" class="appareils-option">${appareil}</li>`;
     });
   }
 
@@ -199,13 +199,13 @@ function selectionFilter() {
   }
 
   function appareilSelection(e) {
-    const appliance = e.target.innerText;
-    if (e.target.classList[0] === "appliances-option") {
+    const appareils = e.target.innerText;
+    if (e.target.classList[0] === "appareils-option") {
       //si el appliance seleccionado no está en la lista entonces lo agrega
-      if (!appareilsFilter.includes(appliance)) {
-        appareilsFilter.push(appliance);
+      if (!appareilsFilter.includes(appareils)) {
+        appareilsFilter.push(appareils);
         // inserta una etiqueta de filtro en el HTML
-        selectedFilter.innerHTML += `<div class="app"><span>${appliance}</span><i class="fa-regular fa-circle-xmark"></i></div>`;
+        selectedFilter.innerHTML += `<div class="app"><span>${appareils}</span><i class="fa-regular fa-circle-xmark"></i></div>`;
         // renderizar las coincidencias nuevamente
         renderAfterFilter();
         closeFilter();
@@ -236,7 +236,7 @@ function selectionFilter() {
   // cada vez que se renderizan resultados de busqueda se limpia la barra
   searchBar.value = "";
 
-  // 3 filtros: ingredients, appliance y ustensils
+  // 3 filtros: ingredients, appareils y ustensils
   let matchedRecipes;
   if (
     ingredientsFilter.length > 0 &&
@@ -255,7 +255,7 @@ function selectionFilter() {
     console.log(matchedRecipes);
   }
 
-  // 2 filtros: Ingredients y appliance
+  // 2 filtros: Ingredients y appareils
   else if (
     ingredientsFilter.length > 0 &&
     appareilsFilter.length > 0 &&
@@ -288,7 +288,7 @@ function selectionFilter() {
     console.log(matchedRecipes);
   }
 
-  // 2 filtros: Appliance y ustensils
+  // 2 filtros: appareils y ustensils
   else if (
     ingredientsFilter.length == 0 &&
     appareilsFilter.length > 0 &&
@@ -317,7 +317,7 @@ function selectionFilter() {
     console.log("Coincidencias:", matchedRecipes.length);
   }
 
-  // Solo filtro de appliances
+  // Solo filtro de appareils
   else if (
     ingredientsFilter.length == 0 &&
     appareilsFilter.length > 0 &&
@@ -400,15 +400,15 @@ function selectionFilter() {
           renderAfterFilter();
           break;
 
-        // caso en el que la etiqueta cerrada era un appliance
+        // caso en el que la etiqueta cerrada era un appareils
         case "app":
-          const appliance = event.target.previousSibling.innerText;
-          appareilsFilter.splice(appareilsFilter.indexOf(appliance), 1);
+          const appareils = event.target.previousSibling.innerText;
+          appareilsFilter.splice(appareilsFilter.indexOf(appareils), 1);
           event.target.parentElement.remove();
           renderAfterFilter();
           break;
 
-        // caso por defecto: si no se cerró un ingredient ni un appliance
+        // caso por defecto: si no se cerró un ingredient ni un appareils
         // entonces era un ustensil
         default:
           const ustensil = event.target.previousSibling.innerText;
