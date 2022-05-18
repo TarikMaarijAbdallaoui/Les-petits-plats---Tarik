@@ -95,6 +95,8 @@ const ustensilsFilter = [];
 
 /* 2- Algorithme de sélection d'un des 3 éléments */
 
+/*2-1 : la fonction qui permet de sélectionner un élément au clic ou en le tapant */
+
 function selectionFilter() {
   // desestructuracion de las listas de ingredients, appliance y ustensils
   const { allIngredients, allAppareils, allUstensils } = allFilters(recipes);
@@ -227,6 +229,197 @@ function selectionFilter() {
   }
 }
 
+/*
+ 2-2: Rendre les plats en fonction des combinaisons de filtres définies
+ */
+ function renderAfterFilter() {
+  // cada vez que se renderizan resultados de busqueda se limpia la barra
+  searchBar.value = "";
+
+  // 3 filtros: ingredients, appliance y ustensils
+  let matchedRecipes;
+  if (
+    ingredientsFilter.length > 0 &&
+    appareilsFilter.length > 0 &&
+    ustensilsFilter.length > 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return (
+        recipe.ingredients.some((i) =>
+          ingredientsFilter.includes(i.ingredient)
+        ) &&
+        appareilsFilter.includes(recipe.appliance) &&
+        recipe.ustensils.some((ustensil) => ustensilsFilter.includes(ustensil))
+      );
+    });
+    console.log(matchedRecipes);
+  }
+
+  // 2 filtros: Ingredients y appliance
+  else if (
+    ingredientsFilter.length > 0 &&
+    appareilsFilter.length > 0 &&
+    ustensilsFilter.length == 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return (
+        recipe.ingredients.some((i) =>
+          ingredientsFilter.includes(i.ingredient)
+        ) && appareilsFilter.includes(recipe.appliance)
+      );
+    });
+    console.log(matchedRecipes);
+  }
+
+  // 2 filtros: Ingredients y ustensils
+  else if (
+    ingredientsFilter.length > 0 &&
+    appareilsFilter.length == 0 &&
+    ustensilsFilter.length > 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return (
+        recipe.ingredients.some((i) =>
+          ingredientsFilter.includes(i.ingredient)
+        ) &&
+        recipe.ustensils.some((ustensil) => ustensilsFilter.includes(ustensil))
+      );
+    });
+    console.log(matchedRecipes);
+  }
+
+  // 2 filtros: Appliance y ustensils
+  else if (
+    ingredientsFilter.length == 0 &&
+    appareilsFilter.length > 0 &&
+    ustensilsFilter.length > 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return (
+        appareilsFilter.includes(recipe.appliance) &&
+        recipe.ustensils.some((ustensil) => ustensilsFilter.includes(ustensil))
+      );
+    });
+    console.log("coincidencias:", matchedRecipes.length);
+  }
+
+  // Solo filtro de ingredientes
+  else if (
+    ingredientsFilter.length > 0 &&
+    appareilsFilter.length == 0 &&
+    ustensilsFilter.length == 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return recipe.ingredients.some((i) =>
+        ingredientsFilter.includes(i.ingredient)
+      );
+    });
+    console.log("Coincidencias:", matchedRecipes.length);
+  }
+
+  // Solo filtro de appliances
+  else if (
+    ingredientsFilter.length == 0 &&
+    appareilsFilter.length > 0 &&
+    ustensilsFilter.length == 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return appareilsFilter.includes(recipe.appliance);
+    });
+    console.log("coincidencias:", matchedRecipes.length);
+  }
+
+  // Solo filtro de ustensils
+  else if (
+    ingredientsFilter.length == 0 &&
+    appareilsFilter.length == 0 &&
+    ustensilsFilter.length > 0
+  ) {
+    matchedRecipes = recipes.filter((recipe) => {
+      return recipe.ustensils.some((ustensil) =>
+        ustensilsFilter.includes(ustensil)
+      );
+    });
+    console.log("coincidencias:", matchedRecipes.length);
+  }
+
+  // Si no hay ningun filtro de muestra todos los platos
+  // y retorna void
+  else {
+    showPlats(recipes);
+    // if (document.querySelector(".matchs")) {
+    //   document.querySelector(".matchs").remove();
+    // }
+    return;
+  }
+
+  // limpia la seccion de platos antes de mostrar los nuevos resulados
+  recipeSection.innerHTML = "";
+
+  // Si
+  if (matchedRecipes.length > 0) {
+    showPlats(matchedRecipes);
+    // setTimeout(() => {
+    //   matchMessage(matchedRecipes);
+    // }, 100);
+  }
+
+  // si no hay resultados de la busqueda se muestra una carita triste
+  else {
+    recipeSection.innerHTML = `<div id="nomatch">
+        <img src="./medias/sad-face-gray.svg" alt="" />
+        <p>Cette recherche n'a renvoyé aucune correspondance.</p>
+      </div>`;
+    //document.querySelector(".matchs").remove();
+  }
+}
+
+
+/**
+ * 2-3: Elimina un filtro aplicado al cerrar la etiqueta seleccionada */
+ function closeFilter() {
+  // icono (x) al hacer click se cierra el filtro
+  const cross = document.querySelectorAll(".fa-circle-xmark");
+
+  // por cada icono se crea el evento click que cierra el filtro
+  // y elimina la etiqueta
+  cross.forEach((el) =>
+    el.addEventListener("click", (event) => {
+      const clase = event.target.parentElement.classList[0];
+      console.log(clase);
+
+      // segun sea el caso de la clase obtenida al cerrar la
+      // etiqueta de filtro se ejecuta alguna de las
+      // siguientes acciones
+      switch (clase) {
+        // caso en el que la etiqueta cerrada era un ingredient
+        case "ing":
+          const ingredient = event.target.previousSibling.innerText;
+          ingredientsFilter.splice(ingredientsFilter.indexOf(ingredient), 1);
+          event.target.parentElement.remove();
+          renderAfterFilter();
+          break;
+
+        // caso en el que la etiqueta cerrada era un appliance
+        case "app":
+          const appliance = event.target.previousSibling.innerText;
+          appareilsFilter.splice(appareilsFilter.indexOf(appliance), 1);
+          event.target.parentElement.remove();
+          renderAfterFilter();
+          break;
+
+        // caso por defecto: si no se cerró un ingredient ni un appliance
+        // entonces era un ustensil
+        default:
+          const ustensil = event.target.previousSibling.innerText;
+          ustensilsFilter.splice(appareilsFilter.indexOf(ustensil), 1);
+          event.target.parentElement.remove();
+          renderAfterFilter();
+          break;
+      }
+    })
+  );
+}
 
 
 /* la fonction d'entrée à l'application */
@@ -235,6 +428,7 @@ function selectionFilter() {
         showPlats(recipes);
         searchBarResults(recipes);
         selectionFilter();
+        closeFilter()
 });    
 
 
