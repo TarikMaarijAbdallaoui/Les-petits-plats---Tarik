@@ -47,6 +47,28 @@ header .logo h2{
       cursor: pointer;
 }
 
+/* style de message d'erreur */
+
+#nomatch {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #nomatch img {
+      padding: 20px;
+      width: 50%;
+      max-width: 250px;
+      fill: gray;
+    }
+    #nomatch p {
+      color: gray;
+      text-align: center;
+    }
+    
+
+
 .filters {
       display: flex;
       justify-content: flex-start;

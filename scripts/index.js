@@ -32,7 +32,7 @@ const searchBar = document.getElementById("chercher");
 const recipeSection = document.getElementById("plats");
 
 /**
-  Barre de recherche principale, recherche de correspondances
+  Algoritme Barre de recherche principale, recherche de correspondances
   d'abord dans les titres puis dans la description
  */
  function searchBarResults(recipes) {
@@ -66,19 +66,16 @@ const recipeSection = document.getElementById("plats");
               <img src="./medias/sad-face-gray.svg" alt="" />
               <p>Cette recherche n'a renvoyé aucune correspondance.</p>
             </div>`;
-              document.querySelector(".matchs").remove();
             }
             // de lo contrario se muestran los platos que coinciden con la
             // busqueda
             else {
               showPlats(matchedRecipes);
-              //matchMessage(matchedRecipes);
             }
           }
           // si lo que se escribió no tiene al menos 3 caracteres entonces
           // se muestran todos los platos
           else {
-            //document.querySelector(".matchs").remove();
             recipeSection.innerHTML = "";
             showPlats(recipes);
           }
