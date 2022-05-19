@@ -83,8 +83,6 @@ const recipeSection = document.getElementById("plats");
         });
       }
       
-
-/* algorithme de filtrage */
 const selectedFilter = document.getElementById("selected-filter");
 
 // Listes de filtres de recherche
@@ -98,10 +96,10 @@ const ustensilsFilter = [];
 /*2-1 : la fonction qui permet de sélectionner un élément au clic ou en le tapant */
 
 function selectionFilter() {
-  // desestructuracion de las listas de ingredients, appareils y ustensils
+  // déstructuration des listes de ingredients, appareils y ustensils
   const { allIngredients, allAppareils, allUstensils } = allFilters(recipes);
 
-  // seleccion de elementos del dom para su modificacion
+  // sélection d'éléments dom pour les modifier
   const ingredientsBlock = document.querySelector("#ingredients-list");
   const appareilsBlock = document.querySelector("#appareils-list");
   const ustensilsBlock = document.querySelector("#ustensils-list");
@@ -141,8 +139,8 @@ function selectionFilter() {
   }
 
   /**
-   * Esta función recarga la lista de ustensils con aquellos que coinciden
-   * con lo escrito en el input
+   * Cette fonction recharge la liste des ustensils avec ceux qui correspondent
+   à ce qui a été écrit par l'utilisateur dans l'entrée
    * @param {evento click} e
    */
   function typeMatchUstensils(e) {
@@ -160,8 +158,8 @@ function selectionFilter() {
   }
 
   /**
-   * Esta función recarga la lista de appareils con aquellos que coinciden
-   * con lo escrito en el input
+   * Cette fonction recharge la liste dese appareils avec ceux qui correspondent
+   à ce qui a été écrit par l'utilisateur dans l'entrée
    * @param {evento click} e
    */
   function typeMatchAppapareil(e) {
@@ -178,20 +176,20 @@ function selectionFilter() {
   }
 
   /**
-   * Esta función inserta una etiqueta en la sección de filtros y renderiza los
-   * resultados del filtro en la sección de platos
+   * Cette fonction insère une étiquette dans la section des filtres et afficher
+    les résultats du filtre dans la section des ponts
    * @param {evento click} e
    */
   function ingredientSelection(e) {
     const ingredient = e.target.innerText;
 
     if (e.target.classList[0] === "ingredients-option") {
-      //si el ingredient seleccionado no está en la lista entonces lo agrega
+      // si l'ingrédient sélectionné n'est pas dans la liste alors elle l'ajoute
       if (!ingredientsFilter.includes(ingredient)) {
         ingredientsFilter.push(ingredient);
-        // inserta una etiqueta de filtro en el HTML
+        // insérer une balise de filtre dans le HTML
         selectedFilter.innerHTML += `<div class="ing"><span>${ingredient}</span><i class="fa-regular fa-circle-xmark"></i></div>`;
-        // renderizar las coincidencias nuevamente
+        // affiche de nouveau les coïncidences 
         renderAfterFilter();
         closeFilter();
       }
@@ -201,12 +199,12 @@ function selectionFilter() {
   function appareilSelection(e) {
     const appareils = e.target.innerText;
     if (e.target.classList[0] === "appareils-option") {
-      //si el appliance seleccionado no está en la lista entonces lo agrega
+      //si l'appareil sélectionné n'est pas dans la liste alors elle l'ajoute
       if (!appareilsFilter.includes(appareils)) {
         appareilsFilter.push(appareils);
-        // inserta una etiqueta de filtro en el HTML
+        // insérer une balise de filtre dans le HTML
         selectedFilter.innerHTML += `<div class="app"><span>${appareils}</span><i class="fa-regular fa-circle-xmark"></i></div>`;
-        // renderizar las coincidencias nuevamente
+        // affiche de nouveau les coïncidences
         renderAfterFilter();
         closeFilter();
       }
@@ -219,9 +217,9 @@ function selectionFilter() {
       //si el ustensil seleccionado no está en la lista entonces lo agrega
       if (!ustensilsFilter.includes(ustensil)) {
         ustensilsFilter.push(ustensil);
-        // inserta una etiqueta de filtro en el HTML
+        // insérer une balise de filtre dans le HTML
         selectedFilter.innerHTML += `<div class="ute"><span>${ustensil}</span><i class="fa-regular fa-circle-xmark"></i></div>`;
-        // renderizar las coincidencias nuevamente
+        // affiche de nouveau les coïncidences
         renderAfterFilter();
         closeFilter();
       }
@@ -233,10 +231,10 @@ function selectionFilter() {
  2-2: Rendre les plats en fonction des combinaisons de filtres définies
  */
  function renderAfterFilter() {
-  // cada vez que se renderizan resultados de busqueda se limpia la barra
+  // chaque fois que les résultats de la recherche sont rendus, la barre est effacée
   searchBar.value = "";
 
-  // 3 filtros: ingredients, appareils y ustensils
+  // 3 filtres: ingredients, appareils y ustensils
   let matchedRecipes;
   if (
     ingredientsFilter.length > 0 &&
@@ -255,7 +253,7 @@ function selectionFilter() {
     console.log(matchedRecipes);
   }
 
-  // 2 filtros: Ingredients y appareils
+  // 2 filtres: Ingredients y appareils
   else if (
     ingredientsFilter.length > 0 &&
     appareilsFilter.length > 0 &&
@@ -271,7 +269,7 @@ function selectionFilter() {
     console.log(matchedRecipes);
   }
 
-  // 2 filtros: Ingredients y ustensils
+  // 2 filtres: Ingredients y ustensils
   else if (
     ingredientsFilter.length > 0 &&
     appareilsFilter.length == 0 &&
@@ -288,7 +286,7 @@ function selectionFilter() {
     console.log(matchedRecipes);
   }
 
-  // 2 filtros: appareils y ustensils
+  // 2 filtres: appareils y ustensils
   else if (
     ingredientsFilter.length == 0 &&
     appareilsFilter.length > 0 &&
@@ -303,7 +301,7 @@ function selectionFilter() {
     console.log("coincidencias:", matchedRecipes.length);
   }
 
-  // Solo filtro de ingredientes
+  // 1 seul filtre des ingredientes
   else if (
     ingredientsFilter.length > 0 &&
     appareilsFilter.length == 0 &&
@@ -317,7 +315,7 @@ function selectionFilter() {
     console.log("Coincidencias:", matchedRecipes.length);
   }
 
-  // Solo filtro de appareils
+  // 1 seul filtre de appareils
   else if (
     ingredientsFilter.length == 0 &&
     appareilsFilter.length > 0 &&
@@ -329,7 +327,7 @@ function selectionFilter() {
     console.log("coincidencias:", matchedRecipes.length);
   }
 
-  // Solo filtro de ustensils
+  // 1 seul filtre de ustensils
   else if (
     ingredientsFilter.length == 0 &&
     appareilsFilter.length == 0 &&
@@ -343,56 +341,47 @@ function selectionFilter() {
     console.log("coincidencias:", matchedRecipes.length);
   }
 
-  // Si no hay ningun filtro de muestra todos los platos
-  // y retorna void
+  // S'il n'y a pas de filtre, tous les plats sont affichés
   else {
     showPlats(recipes);
-    // if (document.querySelector(".matchs")) {
-    //   document.querySelector(".matchs").remove();
-    // }
     return;
   }
 
-  // limpia la seccion de platos antes de mostrar los nuevos resulados
+  // vider la section plats avant d'afficher les nouveaux résultats
   recipeSection.innerHTML = "";
 
   // Si
   if (matchedRecipes.length > 0) {
     showPlats(matchedRecipes);
-    // setTimeout(() => {
-    //   matchMessage(matchedRecipes);
-    // }, 100);
   }
 
-  // si no hay resultados de la busqueda se muestra una carita triste
+  // s'il n'y a pas de résultats de recherche, un visage triste s'affiche
   else {
     recipeSection.innerHTML = `<div id="nomatch">
         <img src="./medias/sad-face-gray.svg" alt="" />
         <p>Cette recherche n'a renvoyé aucune correspondance.</p>
       </div>`;
-    //document.querySelector(".matchs").remove();
   }
 }
 
 
 /**
- * 2-3: Elimina un filtro aplicado al cerrar la etiqueta seleccionada */
+ * 2-3: Supprime un filtre appliqué en fermant la balise sélectionnée */
  function closeFilter() {
-  // icono (x) al hacer click se cierra el filtro
+  // l'icône (x) lorsqu'il est cliqué ferme le filtre
   const cross = document.querySelectorAll(".fa-circle-xmark");
 
-  // por cada icono se crea el evento click que cierra el filtro
-  // y elimina la etiqueta
+  // pour chaque icône, l'événement de clic est créé qui ferme le filtre
+  // et cela supprime la balise
   cross.forEach((el) =>
     el.addEventListener("click", (event) => {
       const clase = event.target.parentElement.classList[0];
       console.log(clase);
 
-      // segun sea el caso de la clase obtenida al cerrar la
-      // etiqueta de filtro se ejecuta alguna de las
-      // siguientes acciones
+      /* selon le cas de la classe obtenue en fermant la balise du filtre
+       une des actions suivantes sera exécutée */
       switch (clase) {
-        // caso en el que la etiqueta cerrada era un ingredient
+        // cas où l'étiquette fermée était un ingrédient
         case "ing":
           const ingredient = event.target.previousSibling.innerText;
           ingredientsFilter.splice(ingredientsFilter.indexOf(ingredient), 1);
@@ -400,7 +389,7 @@ function selectionFilter() {
           renderAfterFilter();
           break;
 
-        // caso en el que la etiqueta cerrada era un appareils
+        // cas où l'étiquette fermée était un appareils
         case "app":
           const appareils = event.target.previousSibling.innerText;
           appareilsFilter.splice(appareilsFilter.indexOf(appareils), 1);
@@ -408,8 +397,8 @@ function selectionFilter() {
           renderAfterFilter();
           break;
 
-        // caso por defecto: si no se cerró un ingredient ni un appareils
-        // entonces era un ustensil
+        // cas par défaut: si ce qui était fermé n'était pas un ingrédient ni un appareils
+        // alors c'était un ustensile
         default:
           const ustensil = event.target.previousSibling.innerText;
           ustensilsFilter.splice(appareilsFilter.indexOf(ustensil), 1);
@@ -431,5 +420,3 @@ function selectionFilter() {
         closeFilter()
 });    
 
-
-/*  */
