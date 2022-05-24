@@ -55,6 +55,7 @@ header .logo h2{
       justify-content: center;
       align-items: center;
       padding: 20px;
+      width: 100%;
     }
     #nomatch img {
       padding: 20px;

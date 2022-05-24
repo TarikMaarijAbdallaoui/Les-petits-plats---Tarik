@@ -36,53 +36,73 @@ const recipeSection = document.getElementById("plats");
  1- Algorithme  Barre de recherche principale, recherche de correspondances
   d'abord dans les titres puis dans la description
  */
- function searchBarResults(recipes) {
-        searchBar.addEventListener("keyup", function (e) {
-          /* Normalisez le texte écrit afin qu'il ne distingue pas les accents ou
-          caractères spéciaux */
-          const inputValue = normalizeString(e.target.value);
-      
-          // Si el texto ingresado en la barra de busqueda tiene 3 o mas caracteres
-          // se ejecuta la búsqueda primero en los ingredientes y luego en la descripcion
-          if (inputValue.length > 2) {
-            const matchedRecipes = recipes.filter((recipe) => {
-              return (
-                // el metodo includes() verifica si el texto del campo de busqueda
-                // se encuentra los ingredientes o la descripcion de la receta
-                normalizeString(recipe.name).includes(inputValue) ||
-                recipe.ingredients.some((i) =>
-                  normalizeString(i.ingredient).includes(inputValue)
-                ) ||
-                normalizeString(recipe.description).includes(inputValue)
+  function searchBarResults(recipes) {
+    searchBar.addEventListener("keyup", function (e) {
+      // Normalizar el texto escrito para que no distinga tildes ni
+      // caracteres especiales
+      const inputValue = normalizeString(e.target.value);
+  
+      // Si el texto ingresado en la barra de busqueda tiene 3 o mas caracteres
+      // se ejecuta la búsqueda primero en los ingredientes y luego en la descripcion
+      if (inputValue.length > 2) {
+        const matchedRecipes = [];
+  
+        for (const recipe of recipes) {
+          const textInTitle = normalizeString(recipe.name).includes(inputValue);
+          if (textInTitle) {
+            matchedRecipes.push(recipe);
+          } else {
+            for (const i of recipe.ingredients) {
+              const textInIngredients = normalizeString(i.ingredient).includes(
+                inputValue
               );
-            });
-      
-            // se limpia la seccion de platos para renderizar nuevamente los
-            // resultados de la busqueda
-            recipeSection.innerHTML = "";
-      
-            // si no hay resultados de busqueda se muestra una carita triste
-            if (matchedRecipes.length === 0) {
-              recipeSection.innerHTML = `<div id="nomatch">
-              <img src="./medias/sad-face-gray.svg" alt="" />
-              <p>Cette recherche n'a renvoyé aucune correspondance.</p>
-            </div>`;
-            }
-            // de lo contrario se muestran los platos que coinciden con la
-            // busqueda
-            else {
-              showPlats(matchedRecipes);
+              if (textInIngredients) {
+                matchedRecipes.push(recipe);
+                break;
+              } else {
+                const textInDescription = normalizeString(
+                  recipe.description
+              ).includes(inputValue);
+              if (textInDescription) {
+                matchedRecipes.push(recipe);
+                break;
+              }
             }
           }
-          // si lo que se escribió no tiene al menos 3 caracteres entonces
-          // se muestran todos los platos
-          else {
-            recipeSection.innerHTML = "";
-            showPlats(recipes);
-          }
-        });
+        }
       }
-      
+
+      // se limpia la seccion de platos para renderizar nuevamente los
+      // resultados de la busqueda
+      recipeSection.innerHTML = "";
+
+      // si no hay resultados de busqueda se muestra una carita triste
+      if (matchedRecipes.length === 0) {
+        recipeSection.innerHTML = `<div id="nomatch">
+        <img src="./medias/sad-face-gray.svg" alt="" />
+        <p>Cette recherche n'a renvoyé aucune correspondance.</p>
+      </div>`;
+
+      }
+      // de lo contrario se muestran los platos que coinciden con la
+      // busqueda
+      else {
+        showPlats(matchedRecipes);
+
+      }
+    }
+
+    // si lo que se escribió no tiene al menos 3 caracteres entonces
+    // se muestran todos los platos
+    else {
+      //document.querySelector(".matchs").remove();
+      recipeSection.innerHTML = "";
+      showPlats(recipes);
+    }
+  });
+}
+
+     
 const selectedFilter = document.getElementById("selected-filter");
 
 // Listes de filtres de recherche
