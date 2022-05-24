@@ -38,12 +38,12 @@ const recipeSection = document.getElementById("plats");
  */
   function searchBarResults(recipes) {
     searchBar.addEventListener("keyup", function (e) {
-      // Normalizar el texto escrito para que no distinga tildes ni
-      // caracteres especiales
+      // Normaliser le texte écrit afin qu'il ne distingue pas les accents
+      // ou les caractères spéciaux
       const inputValue = normalizeString(e.target.value);
   
-      // Si el texto ingresado en la barra de busqueda tiene 3 o mas caracteres
-      // se ejecuta la búsqueda primero en los ingredientes y luego en la descripcion
+      // Si le texte saisi dans la barre de recherche comporte 3 caractères ou plus
+      // la recherche s'effectue d'abord dans les ingrédients puis dans la description
       if (inputValue.length > 2) {
         const matchedRecipes = [];
   
@@ -72,11 +72,10 @@ const recipeSection = document.getElementById("plats");
         }
       }
 
-      // se limpia la seccion de platos para renderizar nuevamente los
-      // resultados de la busqueda
+      // la section vaisselle est nettoyée pour restituer les résultats de la recherche
       recipeSection.innerHTML = "";
 
-      // si no hay resultados de busqueda se muestra una carita triste
+      // s'il n'y a pas de résultats de recherche, un visage triste s'affiche
       if (matchedRecipes.length === 0) {
         recipeSection.innerHTML = `<div id="nomatch">
         <img src="./medias/sad-face-gray.svg" alt="" />
@@ -84,16 +83,15 @@ const recipeSection = document.getElementById("plats");
       </div>`;
 
       }
-      // de lo contrario se muestran los platos que coinciden con la
-      // busqueda
+      // sinon, les plats qui correspondent à la recherche sont affichés
       else {
         showPlats(matchedRecipes);
 
       }
     }
 
-    // si lo que se escribió no tiene al menos 3 caracteres entonces
-    // se muestran todos los platos
+    // si ce qui a été écrit n'a pas au moins 3 caractères alors tous
+    // les plats sont affichés
     else {
       //document.querySelector(".matchs").remove();
       recipeSection.innerHTML = "";
