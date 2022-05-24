@@ -42,13 +42,13 @@ const recipeSection = document.getElementById("plats");
           caractères spéciaux */
           const inputValue = normalizeString(e.target.value);
       
-          // Si el texto ingresado en la barra de busqueda tiene 3 o mas caracteres
-          // se ejecuta la búsqueda primero en los ingredientes y luego en la descripcion
+          // Si le texte saisi dans la barre de recherche comporte 3 caractères ou plus
+          // la recherche s'effectue d'abord dans les ingrédients puis dans la description
           if (inputValue.length > 2) {
             const matchedRecipes = recipes.filter((recipe) => {
               return (
-                // el metodo includes() verifica si el texto del campo de busqueda
-                // se encuentra los ingredientes o la descripcion de la receta
+                // la méthode includes() vérifie si le texte du champ de recherche contient
+                // les ingrédients ou la description de la recette
                 normalizeString(recipe.name).includes(inputValue) ||
                 recipe.ingredients.some((i) =>
                   normalizeString(i.ingredient).includes(inputValue)
@@ -57,25 +57,23 @@ const recipeSection = document.getElementById("plats");
               );
             });
       
-            // se limpia la seccion de platos para renderizar nuevamente los
-            // resultados de la busqueda
+            // la section des plats est vidée pour restituer les résultats de la recherche
             recipeSection.innerHTML = "";
       
-            // si no hay resultados de busqueda se muestra una carita triste
+            // s'il n'y a pas de résultats de recherche, un visage triste s'affiche
             if (matchedRecipes.length === 0) {
               recipeSection.innerHTML = `<div id="nomatch">
               <img src="./medias/sad-face-gray.svg" alt="" />
               <p>Cette recherche n'a renvoyé aucune correspondance.</p>
             </div>`;
             }
-            // de lo contrario se muestran los platos que coinciden con la
-            // busqueda
+            //sinon les plats qui correspondent à la recherche sont affichés
             else {
               showPlats(matchedRecipes);
             }
           }
-          // si lo que se escribió no tiene al menos 3 caracteres entonces
-          // se muestran todos los platos
+          //si ce qui a été écrit n'a pas au moins 3 caractères alors
+          // tous les plats sont affichés
           else {
             recipeSection.innerHTML = "";
             showPlats(recipes);
