@@ -51,6 +51,6 @@ export function showPlats(platsList) {
       recipeSection.insertAdjacentHTML("beforeend", platCard);
     });
   } catch (error) {
-    console.error();
+    console.error(error);
   }
 }
