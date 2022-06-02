@@ -1,3 +1,4 @@
+// cette fonction reçoit les ingrédients de chaque plat et les renvoie sous forme de liste
 function getIngredients(ingredientsList) {
   let list = "";
   ingredientsList.forEach((item) => {
@@ -11,6 +12,7 @@ function getIngredients(ingredientsList) {
   return list;
 }
 
+// Cette fonction reçoit la liste des plats et crée un modèle au niveau HTML pour chacun d'entre
 export function showPlats(platsList) {
   try {
     platsList.forEach((plat) => {
