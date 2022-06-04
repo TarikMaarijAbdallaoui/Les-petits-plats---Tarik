@@ -29,13 +29,13 @@ function loadFilters(recipes) {
 };
 
 
-const searchBar = document.getElementById("chercher");
-const recipeSection = document.getElementById("plats");
-
 /*
  1- Algorithme  Barre de recherche principale, recherche de correspondances
   d'abord dans les titres puis dans la description
  */
+
+  const searchBar = document.getElementById("chercher");
+  const recipeSection = document.getElementById("plats");
   function searchBarResults(recipes) {
     searchBar.addEventListener("keyup", function (e) {
       // Normaliser le texte écrit afin qu'il ne distingue pas les accents
@@ -100,16 +100,13 @@ const recipeSection = document.getElementById("plats");
   });
 }
 
-     
-const selectedFilter = document.getElementById("selected-filter");
+/* 2- Algorithme de sélection d'un des 3 éléments */
 
+const selectedFilter = document.getElementById("selected-filter");
 // Listes de filtres de recherche
 const ingredientsFilter = [];
 const appareilsFilter = [];
 const ustensilsFilter = [];
-
-
-/* 2- Algorithme de sélection d'un des 3 éléments */
 
 /*2-1 : la fonction qui permet de sélectionner un élément au clic ou en le tapant */
 

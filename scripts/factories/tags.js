@@ -17,7 +17,7 @@ tagLabel.forEach((label) => {
     tagInput.style.width = "40rem";
   });
 });
-
+        
 /*événement qui montre les éléments des 3 couleurs*/
 const tagArrow = document.querySelectorAll(".tag-arrow");
 

@@ -12,7 +12,7 @@ function getIngredients(ingredientsList) {
   return list;
 }
 
-// Cette fonction reçoit la liste des plats et crée un modèle au niveau HTML pour chacun d'entre
+// Cette fonction reçoit la liste des plats qui ont passé par le paramètre et crée un modèle au niveau HTML pour chacun d'entre
 export function showPlats(platsList) {
   try {
     platsList.forEach((plat) => {
